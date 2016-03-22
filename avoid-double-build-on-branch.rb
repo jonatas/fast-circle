@@ -33,8 +33,7 @@ end
 
 def cancel_builds_in_the_same_branch
   builds = builds_in_the_same_branch
-  puts "#{Time.now}: Status for #{$username}/#{$repo}: "
-  print  builds.inspect
+  puts "#{$username}/#{$repo}: #{builds.inspect}"
   builds.each do |branch, build_status|
     next if branch == "master"
     next if build_status.length <= 1
@@ -48,7 +47,10 @@ end
 
 10.times do
   cancel_builds_in_the_same_branch
-  sleep 55
+  50.times do
+    sleep 1
+    print "."
+  end
 end
 #require 'pry'
 #binding.pry
