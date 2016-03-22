@@ -1,7 +1,5 @@
 require "bundler/setup"
-require "nokogiri"
 require "circleci"
-require "active_record"
 
 
 if ENV['RACK_ENV'].nil? || ENV['RACK_ENV'] != 'production'
