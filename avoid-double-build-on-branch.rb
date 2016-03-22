@@ -2,9 +2,12 @@ require "bundler/setup"
 require "nokogiri"
 require "circleci"
 require "active_record"
-require 'dotenv'
 
-Dotenv.load
+
+if ENV['RACK_ENV'].nil? || ENV['RACK_ENV'] != 'production'
+  require 'dotenv' 
+  Dotenv.load
+end
 
 tkn = ENV['CI_TOKEN']
 
