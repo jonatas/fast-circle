@@ -3,7 +3,7 @@
 It connects on circle and look for repeated builds in the same branch. It
 cancel the old builds keeping only latest commit in each branch.
 
-It does cancel builds on master branch.
+It doesn't cancel builds on master branch.
 
 ## Setup your keys
 
