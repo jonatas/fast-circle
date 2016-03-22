@@ -33,20 +33,23 @@ end
 
 def cancel_builds_in_the_same_branch
   builds = builds_in_the_same_branch
-  puts "Current status for #{$username}/#{$repo}"
-  p builds
+  puts "#{Time.now}: Status for #{$username}/#{$repo}: "
+  print  builds.inspect
   builds.each do |branch, build_status|
     next if branch == "master"
     next if build_status.length <= 1
     build_status.keys.sort[0..-2].each do |build_num|
-      print "canceling: ##{build_num} ..."
+      print "\ncanceling: ##{build_num} ..."
       CircleCi::Build.cancel $username, $repo, build_num
-      print "..!\n"
+      print ".!"
     end
   end
 end
 
-cancel_builds_in_the_same_branch
+10.times do
+  cancel_builds_in_the_same_branch
+  sleep 55
+end
 #require 'pry'
 #binding.pry
 
