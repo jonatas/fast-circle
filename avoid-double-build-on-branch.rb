@@ -38,7 +38,7 @@ def cancel_builds_in_the_same_branch
     next if branch == "master"
     next if build_status.length <= 1
     build_status.keys.sort[0..-2].each do |build_num|
-      print "\ncanceling: ##{build_num} ..."
+      puts "canceling: ##{build_num} ..."
       CircleCi::Build.cancel $username, $repo, build_num
       print ".!"
     end
@@ -47,6 +47,7 @@ end
 
 10.times do
   cancel_builds_in_the_same_branch
+  puts "sleeping 50 secs"
   50.times do
     sleep 1
     print "."
